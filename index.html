@@ -1,0 +1,817 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Miracle Marble — GTM Landing Plan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f3f2ed;
+      --ink: #1f252c;
+      --muted: #5a6674;
+      --line: #bcb6aa;
+      --card: #fcfbf7;
+      --shadow: 0 12px 28px rgba(31, 37, 44, 0.09);
+      --blue: #1f6aa9;
+      --orange: #c46a2b;
+      --green: #1c7b53;
+      --red: #a73b3b;
+      --violet: #6e4a94;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Manrope", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(196,106,43,.12), transparent 40%),
+        radial-gradient(circle at 100% 15%, rgba(31,106,169,.14), transparent 35%),
+        var(--bg);
+      line-height: 1.45;
+    }
+
+    .wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 24px 16px 54px;
+    }
+
+    .hero {
+      background: linear-gradient(130deg, #212a34 0%, #304050 100%);
+      color: #fff;
+      border-radius: 22px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 380px;
+      height: 380px;
+      border-radius: 50%;
+      right: -140px;
+      top: -120px;
+      background: radial-gradient(circle, rgba(255,255,255,.2), transparent 72%);
+      pointer-events: none;
+    }
+
+    .kicker {
+      margin: 0 0 10px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-size: 12px;
+      font-weight: 800;
+      color: #d2e4f5;
+    }
+
+    h1, h2, h3 {
+      margin: 0 0 10px;
+      font-family: "Space Grotesk", sans-serif;
+      letter-spacing: -.02em;
+    }
+
+    h1 { font-size: clamp(28px, 4vw, 46px); }
+    h2 { font-size: clamp(22px, 2.3vw, 32px); margin-top: 26px; }
+    h3 { font-size: 18px; }
+
+    p { margin: 0 0 8px; }
+
+    .muted { color: var(--muted); }
+
+    .grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+      animation: rise .45s ease both;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .pill {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      background: #e9edf2;
+      color: #2b3440;
+    }
+
+    .pill.blue { background: #dcebf9; color: #165181; }
+    .pill.orange { background: #f8e5d8; color: #8e4a1d; }
+    .pill.green { background: #ddf2e8; color: #1c6b4b; }
+    .pill.red { background: #f9dfdf; color: #8c2b2b; }
+    .pill.violet { background: #ece1f8; color: #573582; }
+
+    ul { margin: 0; padding-left: 18px; }
+    li { margin-bottom: 6px; }
+
+    .flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      padding-top: 6px;
+    }
+
+    .node {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 8px 10px;
+      font-weight: 700;
+      font-size: 13px;
+      box-shadow: var(--shadow);
+    }
+
+    .arrow {
+      color: var(--blue);
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 760px;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 1px solid #ddd8cf;
+      vertical-align: top;
+      font-size: 14px;
+    }
+
+    th {
+      background: #f3efe5;
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+
+    .month {
+      border-left: 5px solid var(--blue);
+      padding-left: 10px;
+    }
+
+    .month.m2 { border-left-color: var(--orange); }
+    .month.m3 { border-left-color: var(--green); }
+
+    .faq dt {
+      font-weight: 800;
+      margin-bottom: 6px;
+      color: #25313d;
+    }
+
+    .faq dd {
+      margin: 0 0 12px;
+      color: var(--muted);
+    }
+
+    .foot {
+      margin-top: 20px;
+      font-size: 12px;
+      color: #647386;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    @media (max-width: 980px) {
+      .grid.two, .grid.three, .split { grid-template-columns: 1fr; }
+      .hero { padding: 22px; }
+      table { min-width: 640px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <p class="kicker">Miracle Marble / Client GTM Landing</p>
+      <h1>Как мы превращаем интерес в доверие, а доверие — в сделки за 90 дней</h1>
+      <p><strong>Люди покупают у людей, а не у логотипов.</strong> В home services это особенно критично: клиент приглашает подрядчика в дом, поэтому сначала формируется личное доверие, и только потом принимается решение.</p>
+      <p class="muted">Наша базовая формула из master-дока: <strong>Search-first захват спроса + Content-led trust engine</strong>, чтобы довести человека от первого касания до сделки.</p>
+    </section>
+
+    <h2>1) Текущая ситуация и рынок (baseline из master)</h2>
+    <section class="grid two">
+      <article class="card">
+        <span class="pill">Что видим сейчас (факты)</span>
+        <ul>
+          <li>Organic traffic (ETV): ~92/мес vs 707 и 527 у ключевых конкурентов.</li>
+          <li>Organic keywords: ~60 vs 362/442 у конкурентов.</li>
+          <li>GBP: ~10-12 reviews; при этом HomeStars уже 182x5★ (сильный актив доверия).</li>
+          <li>По ядру есть YoY-снижение спроса на -33%...-35%, значит нельзя ставить только на Search.</li>
+        </ul>
+      </article>
+      <article class="card">
+        <span class="pill">Вывод для стратегии</span>
+        <ul>
+          <li>Опираться только на SMM нельзя: без воронки это шум.</li>
+          <li>Опираться только на Search тоже рискованно из-за волатильности спроса.</li>
+          <li>Нужна связка: Search + Local + Content + Partnerships + CRM/SLA discipline.</li>
+          <li>Порядок запуска фиксированный: Foundation -> Demand Capture -> Trust -> Scale.</li>
+        </ul>
+      </article>
+    </section>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Метрика</th>
+            <th>Miracle Marble</th>
+            <th>Лучший конкурент</th>
+            <th>Разрыв</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Organic traffic (ETV)</td>
+            <td>~92</td>
+            <td>~707</td>
+            <td>~7.7x</td>
+          </tr>
+          <tr>
+            <td>Organic keywords</td>
+            <td>~60</td>
+            <td>~442</td>
+            <td>~7.3x</td>
+          </tr>
+          <tr>
+            <td>Google reviews</td>
+            <td>~10-12</td>
+            <td>~80-150+</td>
+            <td>~7-12x</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>2) Целевая аудитория (детально)</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Сегмент</th>
+            <th>Ключевая боль</th>
+            <th>Что им показываем</th>
+            <th>Оффер</th>
+            <th>CTA</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Homeowners (B2C)</td>
+            <td>Боятся переплаты и ошибки в выборе материала</td>
+            <td>Кейсы, сравнения, процесс монтажа, отзывы</td>
+            <td>Бесплатный расчет + визит в шоурум</td>
+            <td>Get Free Estimate</td>
+          </tr>
+          <tr>
+            <td>Condo/Remnant (B2C)</td>
+            <td>Ограниченный бюджет, нужен быстрый результат</td>
+            <td>Small-space кейсы, остатки, сроки</td>
+            <td>Компактный пакет для condo</td>
+            <td>Book Consult</td>
+          </tr>
+          <tr>
+            <td>Designers (B2B)</td>
+            <td>Нужен надежный подрядчик без срывов</td>
+            <td>Trade-процессы, SLA, примеры работ по дизайну</td>
+            <td>Trade onboarding</td>
+            <td>Partner Call</td>
+          </tr>
+          <tr>
+            <td>Builders / GC (B2B)</td>
+            <td>Нужна предсказуемость по срокам и объему</td>
+            <td>Capacity, контроль качества, repeat-case</td>
+            <td>Партнерский проектный слот</td>
+            <td>Capacity Review</td>
+          </tr>
+          <tr>
+            <td>Realtors / Referrers</td>
+            <td>Нужен сервис, который не подведет их клиента</td>
+            <td>Скорость сметы, кейсы, отзывы, сопровождение</td>
+            <td>Referral program</td>
+            <td>Submit Referral</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>3) Как клиент принимает решение и где здесь SMM</h2>
+    <section class="card">
+      <span class="pill blue">SMM в этой системе = управляемое доверие, а не отдельный канал \"сам по себе\"</span>
+      <div class="flow">
+        <div class="node">Search/GBP трафик</div><div class="arrow">→</div>
+        <div class="node">Контент-доказательства (IG/Pinterest/Blog)</div><div class="arrow">→</div>
+        <div class="node">CTA</div><div class="arrow">→</div>
+        <div class="node">Landing</div><div class="arrow">→</div>
+        <div class="node">Lead</div><div class="arrow">→</div>
+        <div class="node">CRM + SLA</div><div class="arrow">→</div>
+        <div class="node">Quote / Won</div>
+      </div>
+      <p class="muted">SMM не заменяет поиск и рекламу. Он усиливает конверсию: снимает сомнения и поддерживает решение на пути к заявке.</p>
+    </section>
+
+    <h2>4) Контент-система (что конкретно делаем)</h2>
+    <section class="grid three">
+      <article class="card">
+        <span class="pill blue">Owned content</span>
+        <ul>
+          <li>Сайт-блог: сравнения, FAQ, price-context</li>
+          <li>Кейсы объектов: before/process/after</li>
+          <li>IG: карусели + short video</li>
+          <li>Pinterest: evergreen-пины</li>
+          <li>YouTube: экспертные разборы</li>
+        </ul>
+      </article>
+      <article class="card">
+        <span class="pill orange">Borrowed content</span>
+        <ul>
+          <li>Форумы и локальные сообщества</li>
+          <li>Экспертные ответы без прямого спама</li>
+          <li>Гостевые посты у партнеров</li>
+          <li>Case-комментарии в релевантных тредах</li>
+        </ul>
+      </article>
+      <article class="card">
+        <span class="pill green">Контент-объем</span>
+        <ul>
+          <li>M1: запуск production-loop + 4 карусели + 2 простых видео + 6-8 pins</li>
+          <li>M2: 8 каруселей + 3-4 простых видео + 8-10 pins</li>
+          <li>M3: 8 каруселей + 4 простых видео + 10-12 pins</li>
+          <li>Каждый ассет: этап воронки + конкретный CTA</li>
+        </ul>
+      </article>
+    </section>
+    <section class="card" style="margin-top:16px;">
+      <span class="pill">Ключевые категории контента (обязательные)</span>
+      <div class="table-wrap" style="margin-top:10px;">
+        <table>
+          <thead>
+            <tr>
+              <th>Категория</th>
+              <th>Доля в контент-плане</th>
+              <th>Что выпускаем</th>
+              <th>Зачем в воронке</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Кейсы объектов (before/process/after)</td>
+              <td>30-35%</td>
+              <td>Карусели, pins, short video с объектов</td>
+              <td>Показываем реальный результат и качество работ</td>
+            </tr>
+            <tr>
+              <td>Экспертный контент (лицо бренда)</td>
+              <td>20-25%</td>
+              <td>Q&A, разбор материалов, выбор под задачу</td>
+              <td>Строим доверие: люди покупают у людей</td>
+            </tr>
+            <tr>
+              <td>Цена / сроки / процесс</td>
+              <td>15-20%</td>
+              <td>Посты и видео про этапы, риски и ожидания</td>
+              <td>Снимаем страхи и ускоряем решение</td>
+            </tr>
+            <tr>
+              <td>Ошибки и FAQ</td>
+              <td>10-15%</td>
+              <td>Анти-ошибки, "как не переплатить", чек-листы</td>
+              <td>Закрываем возражения до звонка</td>
+            </tr>
+            <tr>
+              <td>Social proof (reviews, showroom, кейсы клиентов)</td>
+              <td>10-15%</td>
+              <td>Отзывы, доказательства сервиса, результаты</td>
+              <td>Повышаем конверсию в заявку и встречу</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <section class="card" style="margin-top:16px;">
+      <span class="pill green">Производство собственного контента с M1 (еженедельный цикл)</span>
+      <div class="flow">
+        <div class="node">Съемка: шоурум/объект</div><div class="arrow">→</div>
+        <div class="node">Отбор лучших кадров</div><div class="arrow">→</div>
+        <div class="node">Ретуш + цветокор</div><div class="arrow">→</div>
+        <div class="node">Упаковка: post/pin/video</div><div class="arrow">→</div>
+        <div class="node">Публикация + CTA</div><div class="arrow">→</div>
+        <div class="node">CRM-теги + выводы</div>
+      </div>
+      <p class="muted">В M1 запускаем процесс и шаблоны. С M2 масштабируем только форматы, которые дают качественные обращения.</p>
+    </section>
+
+    <h2>5) Почему нужно лицо бренда (Наталия)</h2>
+    <section class="grid two">
+      <article class="card">
+        <span class="pill violet">Роль лица бренда</span>
+        <ul>
+          <li>Снижает тревогу клиента перед дорогим решением.</li>
+          <li>Дает человеческое объяснение сложных тем (материалы, сроки, уход).</li>
+          <li>Повышает trust в B2C и credibility в B2B.</li>
+          <li>Ускоряет решение "поехать в шоурум".</li>
+          <li>По рабочей гипотезе стратегии, узнаваемое лицо бренда формирует доверие в 3-5 раз быстрее, чем безликая корпоративная подача.</li>
+        </ul>
+      </article>
+      <article class="card">
+        <span class="pill">Практический формат</span>
+        <ul>
+          <li>M1: 2 простых видео (FAQ/продукт/обучение) без сложного продакшна.</li>
+          <li>M2-M3: 3-4 простых видео в месяц, затем усложняем только winner-форматы.</li>
+          <li>Q&A: "что выбрать и почему".</li>
+          <li>Разбор реальных кейсов с объектов.</li>
+          <li>Ролики для paid+organic одновременно.</li>
+        </ul>
+      </article>
+    </section>
+
+    <h2>6) Блогеры: как делаем нативно, чтобы это выглядело как рекомендация, а не реклама</h2>
+    <section class="split">
+      <article class="card">
+        <span class="pill green">Сценарии интеграций</span>
+        <ul>
+          <li><strong>Showroom day:</strong> блогер приходит в шоурум, Наталия проводит консультацию, снимается нативный walkthrough.</li>
+          <li><strong>Story-based:</strong> блогер делится личной историей ремонта, почему выбрал материал, какие ошибки избежал.</li>
+          <li><strong>Live renovation:</strong> блогер реально делает ремонт и получает материал/монтаж по согласованной модели.</li>
+          <li><strong>Формат \"как совет друга\":</strong> блогер объясняет, почему выбрал это решение для своего дома, и что в итоге получил.</li>
+          <li><strong>Designer collab:</strong> совместный кейс "дизайнер + Miracle Marble" для B2B доверия.</li>
+        </ul>
+      </article>
+      <article class="card">
+        <span class="pill orange">Модели расчетов</span>
+        <ul>
+          <li><strong>Barter:</strong> ценность/материал/доступ к проекту.</li>
+          <li><strong>Flat fee:</strong> фикс за пакет контента.</li>
+          <li><strong>Hybrid (рекомендуем):</strong> фикс + бонус за квалифицированный лид/бронь.</li>
+          <li><strong>Referral share:</strong> выплата по факту выигранной сделки.</li>
+        </ul>
+        <p class="muted">Правило: один блогер = одна модель оплаты, плюс обязательная атрибуция результата (UTM/промокод/CRM-источник).</p>
+      </article>
+    </section>
+
+    <h2>7) Единая воронка (B2C и B2B внутри одной системы)</h2>
+    <section class="card">
+      <span class="pill">Non-Negotiable Funnel Sequence</span>
+      <div class="flow">
+        <div class="node">Source</div><div class="arrow">→</div>
+        <div class="node">CTA</div><div class="arrow">→</div>
+        <div class="node">Landing</div><div class="arrow">→</div>
+        <div class="node">Lead (form/call/WhatsApp)</div><div class="arrow">→</div>
+        <div class="node">CRM source-tag</div><div class="arrow">→</div>
+        <div class="node">SLA</div><div class="arrow">→</div>
+        <div class="node">Quote</div><div class="arrow">→</div>
+        <div class="node">Won</div><div class="arrow">→</div>
+        <div class="node">Review/Referral</div>
+      </div>
+    </section>
+
+    <section class="grid two" style="margin-top:16px;">
+      <article class="card">
+        <span class="pill">B2C этапы</span>
+        <ul>
+          <li>Awareness -> Consideration -> Lead</li>
+          <li>CRM + SLA (<=15 мин в рабочие часы)</li>
+          <li>Showroom/Quote -> Deal -> Review/Referral</li>
+        </ul>
+      </article>
+      <article class="card">
+        <span class="pill">B2B этапы</span>
+        <ul>
+          <li>Sourcing -> Outreach -> Discovery</li>
+          <li>Trade terms + first project</li>
+          <li>Expansion -> Retention (повторяемые проекты)</li>
+        </ul>
+      </article>
+    </section>
+
+    <h2>8) План работ: что делаем, сколько и зачем (90 дней)</h2>
+    <section class="card">
+      <p><strong>Логика плана:</strong> сначала убираем утечки и наводим порядок в воронке, потом включаем controlled scale. Каждый блок работ привязан к измеримому результату.</p>
+    </section>
+    <section class="grid three">
+      <article class="card month">
+        <h3>Month 1</h3>
+        <ul>
+          <li>Сайт и LP: закрываем trust-баги + обновляем 2 ключевые страницы.</li>
+          <li>Фото на сайте: фото-спринт (аудит 80-120 фото, ретуш 30-50 ключевых кадров, обновление hero и галерей на приоритетных страницах).</li>
+          <li>Tracking/CRM/SLA: настраиваем source-tagging и правила обработки лидов.</li>
+          <li>Data baseline: собираем close rate, AOV, gross margin за 90 дней до запуска платного трафика.</li>
+          <li>Own content production: запускаем weekly loop (съемка -> отбор -> ретуш -> упаковка -> публикация) на реальных объектах.</li>
+          <li>Контент-выпуск M1: 4 карусели + 2 простых видео + 6-8 pins в must-have категориях (кейсы, экспертка, цена/сроки, FAQ, social proof).</li>
+          <li>Блогеры: shortlist 15-20 -> qualification 5-8 + UTM/скрипты/оффер.</li>
+          <li>Ads: запуск только после готовности воронки, атрибуции и baseline по unit economics.</li>
+        </ul>
+      </article>
+      <article class="card month m2">
+        <h3>Month 2</h3>
+        <ul>
+          <li>Контент-движок: 8 каруселей + 3-4 short videos + 8-10 pins.</li>
+          <li>Продолжаем weekly production-loop и усиливаем winner-категории по качеству лидов.</li>
+          <li>SEO/BOFU: 1 статья + 1-2 conversion updates на коммерческих страницах.</li>
+          <li>Influencer pilots: 2-3 интеграции с полной атрибуцией.</li>
+          <li>B2B outreach: 5-8 целевых контактов в неделю + follow-up.</li>
+          <li>Weekly optimization: search terms, минус-слова, качество лидов, SLA-контроль.</li>
+        </ul>
+      </article>
+      <article class="card month m3">
+        <h3>Month 3</h3>
+        <ul>
+          <li>Scale-lite: оставляем только winners (каналы/креативы/блогеры).</li>
+          <li>Контент: 8 каруселей + 4 short videos + 10-12 pins, перераспределение в самые сильные темы.</li>
+          <li>Отключаем слабые форматы и перераспределяем ресурсы в работающие.</li>
+          <li>Усиливаем referral loop и B2B trial -> repeat процесс.</li>
+          <li>Готовим M4+ план по фактическим данным CRM и unit economics.</li>
+        </ul>
+      </article>
+    </section>
+
+    <div class="table-wrap" style="margin-top:16px;">
+      <table>
+        <thead>
+          <tr>
+            <th>Собственный контент (категории)</th>
+            <th>Что делаем</th>
+            <th>M1</th>
+            <th>M2</th>
+            <th>M3</th>
+            <th>Зачем</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Кейсы: before / process / after</td>
+            <td>Фото + short video с реальных объектов</td>
+            <td>Запуск capture-процесса + 1 библиотека контента</td>
+            <td>Еженедельный выпуск</td>
+            <td>Масштаб только winner-форматов</td>
+            <td>Показать реальное качество работ и снять недоверие</td>
+          </tr>
+          <tr>
+            <td>Экспертный контент (Наталия)</td>
+            <td>Разбор материалов, ошибок, выбора под бюджет/сценарий</td>
+            <td>4 базовых темы + 2 простых видео-сценария</td>
+            <td>Регулярные выходы в контент-плане</td>
+            <td>Оставляем темы с лучшим откликом</td>
+            <td>Люди покупают у людей: рост доверия и экспертности</td>
+          </tr>
+          <tr>
+            <td>Цена/сроки/процесс</td>
+            <td>Карусели и видео с прозрачным объяснением стоимости и этапов</td>
+            <td>2 материала</td>
+            <td>2-3 материала</td>
+            <td>2-3 материала</td>
+            <td>Снять страх «переплаты» и ускорить решение</td>
+          </tr>
+          <tr>
+            <td>Social proof</td>
+            <td>Отзывы, кейсы клиентов, review snippets, showroom proof</td>
+            <td>Обновляем блоки на сайте и в соцсетях</td>
+            <td>Добавляем в BOFU-поток</td>
+            <td>Усиливаем в sales follow-up</td>
+            <td>Повышать конверсию в заявку и в смету</td>
+          </tr>
+          <tr>
+            <td>Фото-качество сайта</td>
+            <td>Ретуш, цветокор, единый стиль галереи, замена слабых фото</td>
+            <td>Фото-спринт: аудит 80-120, ретуш 30-50, обновление hero/галерей на приоритетных LP</td>
+            <td>Расширение обновленной галереи</td>
+            <td>Поддержание стандарта</td>
+            <td>Визуально подтвердить premium-уровень бренда</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="table-wrap" style="margin-top:16px;">
+      <table>
+        <thead>
+          <tr>
+            <th>Блок работ</th>
+            <th>Сколько делаем (M1-M3)</th>
+            <th>Зачем это делаем</th>
+            <th>Что хотим получить к концу M3</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Tracking + CRM + SLA</td>
+            <td>M1: внедрение и QA; M2-M3: weekly контроль</td>
+            <td>Убрать утечки и видеть качество лида по источнику</td>
+            <td>source-tagged leads >=95%, стабильный SLA ответа</td>
+          </tr>
+          <tr>
+            <td>Сайт и LP (conversion layer)</td>
+            <td>M1: 2 ключевые страницы + trust fixes; M2: 1-2 BOFU updates; M3: доработка winners</td>
+            <td>Повысить конверсию существующего трафика</td>
+            <td>Рост quote starts и showroom bookings</td>
+          </tr>
+          <tr>
+            <td>Контент (owned system)</td>
+            <td>M1: weekly production-loop + 4 карусели + 2 простых видео + 6-8 pins; M2: 8 каруселей + 3-4 видео + 8-10 pins; M3: 8 каруселей + 4 видео + 10-12 pins</td>
+            <td>Построить доверие и закрывать возражения по пути к заявке</td>
+            <td>Стабильный поток MOFU/BOFU ассетов с CTA</td>
+          </tr>
+          <tr>
+            <td>Контент-категории (must-have)</td>
+            <td>M1: фиксируем 5 обязательных категорий и шаблоны; M2-M3: monthly ребаланс по качеству лидов</td>
+            <td>Закрыть весь путь клиента: от сомнений до заявки</td>
+            <td>Покрытие TOFU/MOFU/BOFU без "пустых" зон в контенте</td>
+          </tr>
+          <tr>
+            <td>Фото/ретуш сайта</td>
+            <td>M1: фото-спринт (аудит, ретуш, цветокор, замена слабых фото); M2-M3: докрутка и пополнение</td>
+            <td>Поднять визуальное качество и perception бренда</td>
+            <td>Более сильный first impression и рост конверсии с LP/кейсов</td>
+          </tr>
+          <tr>
+            <td>Блогеры (native tests)</td>
+            <td>M1: shortlist 15-20, qualify 5-8; M2: 2-3 пилота; M3: 1-2 winners</td>
+            <td>Получить доверие через личные рекомендации, а не через “рекламный пуш”</td>
+            <td>Понятные winner-форматы и прогнозируемый assisted lead flow</td>
+          </tr>
+          <tr>
+            <td>B2B партнерский канал</td>
+            <td>M1: partner kit + ICP list; M2: outreach 5-8/неделя; M3: первые trial проекты</td>
+            <td>Собрать более стабильный и повторяемый источник сделок</td>
+            <td>Первые активированные партнеры и повторные касания</td>
+          </tr>
+          <tr>
+            <td>Search/PPC optimization</td>
+            <td>M1: readiness + data baseline + controlled launch; M2-M3: еженедельная оптимизация</td>
+            <td>Забирать high-intent спрос и удерживать CPL в рабочем диапазоне</td>
+            <td>Стабильный qualified lead pipeline без деградации качества</td>
+          </tr>
+          <tr>
+            <td>Review + Referral loops</td>
+            <td>M1: запуск review sprint; M2: еженедельный ритм; M3: referral intake flow</td>
+            <td>Повышать доверие и долю не-платных сделок</td>
+            <td>Рост social proof и первые управляемые referral leads</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>8.1) Быстрый старт: что делаем, сколько стоит, что нужно от клиента</h2>
+    <section class="grid three">
+      <article class="card">
+        <span class="pill blue">Month 1: что делаем</span>
+        <ul>
+          <li>Фиксим сайт/LP и запускаем фото-спринт (аудит + ретуш).</li>
+          <li>Ставим tracking + CRM + SLA и убираем утечки.</li>
+          <li>Запускаем own-content loop + первые карусели/простые видео/pins.</li>
+          <li>Готовим Ads к запуску и запускаем только после readiness + baseline.</li>
+        </ul>
+      </article>
+      <article class="card">
+        <span class="pill orange">Month 1: бюджет</span>
+        <ul>
+          <li>Общий диапазон: <strong>CAD 3,800-4,350</strong>.</li>
+          <li>Retainer: <strong>CAD 3,200</strong>.</li>
+          <li>Третьи стороны/инструменты: <strong>CAD 600-1,150</strong>.</li>
+          <li>Дальше масштаб только после Go/No-Go гейтов.</li>
+        </ul>
+      </article>
+      <article class="card">
+        <span class="pill green">Что нужно от клиента</span>
+        <ul>
+          <li>SLA ответа по B2C-лидам: <=15 мин в рабочие часы.</li>
+          <li>За 7 дней дать data pack: close rate, AOV, gross margin (90 дней).</li>
+          <li>Доступы: GA4/GSC/GTM/Ads/GBP/CRM/сайт.</li>
+          <li>Owner по техправкам и owner по продажам/CRM.</li>
+        </ul>
+      </article>
+    </section>
+
+    <h2>9) Go/No-Go гейты</h2>
+    <section class="grid two">
+      <article class="card">
+        <span class="pill red">Масштаб разрешен, если</span>
+        <ul>
+          <li>source-tagged leads >=95%</li>
+          <li>B2C SLA стабилен (<=15 мин)</li>
+          <li>close rate + margin baseline подтверждены</li>
+          <li>команда выдерживает объем</li>
+          <li>качество лида подтверждено в CRM</li>
+        </ul>
+      </article>
+      <article class="card">
+        <span class="pill red">Если fail</span>
+        <p><strong>Freeze scale, baseline only.</strong></p>
+        <p class="muted">Сначала стабилизация воронки, потом новый цикл масштабирования.</p>
+      </article>
+    </section>
+
+    <h2>10) Вопросы для запуска (что нужно от клиента)</h2>
+    <section class="grid two">
+      <article class="card">
+        <span class="pill">Контент и бренд</span>
+        <ul>
+          <li>Какой архив фото/видео есть за 12 месяцев?</li>
+          <li>Кто снимает raw-контент на объектах и как часто?</li>
+          <li>Наталия готова быть лицом бренда 1-2 видео/неделю?</li>
+          <li>Кто утверждает сценарии и финальные публикации?</li>
+          <li>Есть ли согласия клиентов на публикацию кейсов?</li>
+        </ul>
+      </article>
+      <article class="card">
+        <span class="pill">Доступы и техбаза</span>
+        <ul>
+          <li>Есть admin-доступы к GA4/GSC/GTM/Ads/GBP/CRM?</li>
+          <li>Есть коллтрекинг и корректная атрибуция звонков?</li>
+          <li>Какие критичные баги сайта уже известны?</li>
+          <li>Кто owner тех.правок и какой SLA по внедрению?</li>
+        </ul>
+      </article>
+      <article class="card">
+        <span class="pill">Продажи и CRM</span>
+        <ul>
+          <li>Кто отвечает за лиды в рабочие часы?</li>
+          <li>Текущий SLA ответа и где чаще всего просадки?</li>
+          <li>Какие этапы воронки уже есть в CRM?</li>
+          <li>Кто контролирует follow-up до сделки?</li>
+          <li>Есть данные за 90 дней по close rate, AOV и margin?</li>
+        </ul>
+      </article>
+      <article class="card">
+        <span class="pill">Реактивация и база</span>
+        <ul>
+          <li>Есть база прошлых лидов/клиентов с контактами?</li>
+          <li>Есть сегментация: выигранные/проигранные/уснувшие?</li>
+          <li>Какие каналы реактивации доступны (email/SMS/WhatsApp)?</li>
+          <li>Кто юридически согласует коммуникации?</li>
+        </ul>
+      </article>
+    </section>
+
+    <h2>11) Что важно услышать клиенту на встрече</h2>
+    <section class="card">
+      <dl class="faq">
+        <dt>Почему не стартуем сразу с большого SMM и бюджета?</dt>
+        <dd>Потому что без рабочей воронки это будет дорогой шум, а не продажи.</dd>
+        <dt>Где в проекте контент и зачем он нужен?</dt>
+        <dd>Контент — это база доверия: человек видит реальные работы, процесс и отзывы, после чего оставляет заявку.</dd>
+        <dt>Зачем лицо бренда?</dt>
+        <dd>Чтобы повысить доверие и сократить путь от сомнения к заявке.</dd>
+        <dt>Как работаем с блогерами нативно?</dt>
+        <dd>Через реальные сценарии: визит в шоурум, личная история ремонта, реальный проект с прозрачным учетом результата.</dd>
+        <dt>Когда масштаб?</dt>
+        <dd>Только после прохождения гейтов качества и стабильной операционки.</dd>
+      </dl>
+    </section>
+
+    <h2>12) Что мы не обещаем без данных</h2>
+    <section class="card">
+      <ul>
+        <li>Мы не публикуем финпрогноз по выручке, пока не валидированы close rate, AOV, margin и capacity.</li>
+        <li>Мы не расширяем бюджет, пока не пройдены Go/No-Go гейты по атрибуции, SLA и качеству лида.</li>
+        <li>Мы не масштабируем блогеров и новые каналы, пока пилоты не показали управляемую экономику.</li>
+      </ul>
+      <p class="muted">Сначала системная операционка и прозрачные KPI, затем масштаб.</p>
+    </section>
+
+    <p class="foot">Версия: expanded client one-page / GTM operating narrative</p>
+  </main>
+</body>
+</html>
