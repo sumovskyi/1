@@ -214,10 +214,223 @@
       align-items: start;
     }
 
+    .viz-shell {
+      margin-top: 16px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fff;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .viz-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 12px;
+      border-bottom: 1px solid #ddd8cf;
+      background: #f6f2e9;
+    }
+
+    .viz-btn {
+      border: 1px solid var(--line);
+      background: #fff;
+      color: #31404f;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .viz-btn.active {
+      background: #243241;
+      border-color: #243241;
+      color: #fff;
+    }
+
+    .viz-pane {
+      display: none;
+      padding: 14px;
+    }
+
+    .viz-pane.active {
+      display: block;
+      animation: rise .25s ease both;
+    }
+
+    .viz-funnel {
+      display: grid;
+      gap: 10px;
+    }
+
+    .viz-stage {
+      border: 1px solid #ddd8cf;
+      border-radius: 12px;
+      background: #fcfaf5;
+      padding: 10px 12px;
+    }
+
+    .viz-stage-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .viz-stage-head strong {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 15px;
+    }
+
+    .viz-stage-head span {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .viz-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+
+    .viz-badge {
+      font-size: 11px;
+      font-weight: 800;
+      border-radius: 999px;
+      padding: 4px 8px;
+      border: 1px solid #d8d2c8;
+      background: #f0ece4;
+      color: #2b3440;
+    }
+
+    .viz-badge.seo { background: #deecf7; color: #1f5c8b; }
+    .viz-badge.social { background: #f6e2ea; color: #87435f; }
+    .viz-badge.local { background: #f8e6d8; color: #8d4e1f; }
+    .viz-badge.crm { background: #e0ece8; color: #20583f; }
+    .viz-badge.proof { background: #efe3fb; color: #5a3b82; }
+
+    .viz-stage p {
+      margin: 0;
+      color: #3c4a59;
+      font-size: 14px;
+    }
+
+    .viz-stage small {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .viz-steps {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .viz-step {
+      border: 1px solid #ddd8cf;
+      border-radius: 12px;
+      background: #fcfaf5;
+      padding: 10px;
+    }
+
+    .viz-step .n {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #253749;
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .viz-step h4 {
+      margin: 0 0 6px;
+      font-size: 14px;
+      font-family: "Space Grotesk", sans-serif;
+    }
+
+    .viz-step p {
+      margin: 0;
+      color: #495867;
+      font-size: 13px;
+    }
+
+    .viz-system {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .viz-scard {
+      border: 1px solid #ddd8cf;
+      border-radius: 12px;
+      background: #fcfaf5;
+      padding: 10px 12px;
+    }
+
+    .viz-scard h4 {
+      margin: 0 0 6px;
+      font-size: 14px;
+      font-family: "Space Grotesk", sans-serif;
+    }
+
+    .viz-scard ul {
+      margin: 0;
+      padding-left: 16px;
+      font-size: 13px;
+      color: #47586a;
+    }
+
+    .viz-gates {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .viz-gate {
+      border: 1px solid #ddd8cf;
+      border-radius: 12px;
+      background: #fcfaf5;
+      padding: 10px 12px;
+    }
+
+    .viz-gate h4 {
+      margin: 0 0 6px;
+      font-size: 14px;
+      font-family: "Space Grotesk", sans-serif;
+    }
+
+    .viz-gate p {
+      margin: 0 0 8px;
+      color: #47586a;
+      font-size: 13px;
+    }
+
+    .viz-gate ul {
+      margin: 0;
+      padding-left: 16px;
+      font-size: 13px;
+      color: #47586a;
+    }
+
     @media (max-width: 980px) {
       .grid.two, .grid.three, .split { grid-template-columns: 1fr; }
       .hero { padding: 22px; }
       table { min-width: 640px; }
+      .viz-steps { grid-template-columns: 1fr; }
+      .viz-system { grid-template-columns: 1fr; }
+      .viz-gates { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -244,7 +457,8 @@
       <article class="card">
         <span class="pill">Вывод для стратегии</span>
         <ul>
-          <li>Опираться только на SMM нельзя: без воронки это шум.</li>
+          <li>Опираться только на SMM рискованно: без воронки это шум, а не прогнозируемые продажи.</li>
+          <li>SMM запускаем с M1, но только в lean-режиме и с KPI-гейтами.</li>
           <li>Опираться только на Search тоже рискованно из-за волатильности спроса.</li>
           <li>Нужна связка: Search + Local + Content + Partnerships + CRM/SLA discipline.</li>
           <li>Порядок запуска фиксированный: Foundation -> Demand Capture -> Trust -> Scale.</li>
@@ -337,7 +551,7 @@
       </table>
     </div>
 
-    <h2>3) Как клиент принимает решение и где здесь SMM</h2>
+    <h2>3) Как клиент принимает решение и как сделать SMM продающим</h2>
     <section class="card">
       <span class="pill blue">SMM в этой системе = управляемое доверие, а не отдельный канал \"сам по себе\"</span>
       <div class="flow">
@@ -350,6 +564,15 @@
         <div class="node">Quote / Won</div>
       </div>
       <p class="muted">SMM не заменяет поиск и рекламу. Он усиливает конверсию: снимает сомнения и поддерживает решение на пути к заявке.</p>
+    </section>
+    <section class="card" style="margin-top:16px;">
+      <span class="pill green">Бережная SMM-логика на 90 дней</span>
+      <ul>
+        <li>M1: запускаем SMM сразу, но в lean-cadence и с простыми форматами.</li>
+        <li>M2: увеличиваем выпуск и тестируем связку micro-блогеров с полной атрибуцией.</li>
+        <li>M3: масштабируем только winners и не выходим за рамки capacity.</li>
+        <li>Если Gate A/B/C/D не пройден — freeze scale, baseline only.</li>
+      </ul>
     </section>
 
     <h2>4) Контент-система (что конкретно делаем)</h2>
@@ -378,7 +601,7 @@
         <ul>
           <li>M1: запуск production-loop + 4 карусели + 2 простых видео + 6-8 pins</li>
           <li>M2: 8 каруселей + 3-4 простых видео + 8-10 pins</li>
-          <li>M3: 8 каруселей + 4 простых видео + 10-12 pins</li>
+          <li>M3: 8 каруселей + 3-4 простых видео + 10-12 pins только при Gate D</li>
           <li>Каждый ассет: этап воронки + конкретный CTA</li>
         </ul>
       </article>
@@ -431,6 +654,81 @@
       </div>
     </section>
     <section class="card" style="margin-top:16px;">
+      <span class="pill blue">Варианты контента в нише (формат -> stage -> CTA)</span>
+      <div class="table-wrap" style="margin-top:10px;">
+        <table>
+          <thead>
+            <tr>
+              <th>Формат</th>
+              <th>Сценарий</th>
+              <th>Funnel-stage</th>
+              <th>CTA</th>
+              <th>Канал</th>
+              <th>Owner</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Before/After reveal</td>
+              <td>Быстрый контраст до/после + детали</td>
+              <td>TOFU/MOFU</td>
+              <td>Book showroom</td>
+              <td>IG, Shorts, GBP</td>
+              <td>Content + Installer</td>
+            </tr>
+            <tr>
+              <td>Process proof</td>
+              <td>Шаблон/резка/полировка/монтаж</td>
+              <td>MOFU</td>
+              <td>Get estimate</td>
+              <td>IG, Shorts, Site case</td>
+              <td>Installer + Content</td>
+            </tr>
+            <tr>
+              <td>Material compare</td>
+              <td>Quartz vs Granite vs Marble по задаче</td>
+              <td>MOFU</td>
+              <td>Download guide / Book consult</td>
+              <td>IG carousel, Blog, Pinterest</td>
+              <td>Natalia + Content</td>
+            </tr>
+            <tr>
+              <td>Price/process explainers</td>
+              <td>Реальный проект: диапазон цены + сроки</td>
+              <td>BOFU</td>
+              <td>Get estimate in 24h</td>
+              <td>IG, LP, Sales follow-up</td>
+              <td>Sales + Content</td>
+            </tr>
+            <tr>
+              <td>FAQ / mistakes</td>
+              <td>Частые ошибки и как их избежать</td>
+              <td>MOFU</td>
+              <td>Book showroom</td>
+              <td>IG, GBP, YouTube</td>
+              <td>Natalia</td>
+            </tr>
+            <tr>
+              <td>Social proof</td>
+              <td>Отзывы, кейсы клиентов, showroom proof</td>
+              <td>BOFU</td>
+              <td>Get estimate</td>
+              <td>IG, LP, CRM follow-up</td>
+              <td>Sales + Content</td>
+            </tr>
+            <tr>
+              <td>Showroom walkthrough</td>
+              <td>Проход по шоуруму с экспертным комментарием</td>
+              <td>MOFU/BOFU</td>
+              <td>Book visit</td>
+              <td>IG, YouTube, WhatsApp</td>
+              <td>Natalia + Sales</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <section class="card" style="margin-top:16px;">
       <span class="pill green">Производство собственного контента с M1 (еженедельный цикл)</span>
       <div class="flow">
         <div class="node">Съемка: шоурум/объект</div><div class="arrow">→</div>
@@ -442,6 +740,17 @@
       </div>
       <p class="muted">В M1 запускаем процесс и шаблоны. С M2 масштабируем только форматы, которые дают качественные обращения.</p>
     </section>
+    <section class="card" style="margin-top:16px;">
+      <span class="pill orange">Инструкция по съемке простого контента (SOP)</span>
+      <ul>
+        <li>Снимаем вертикально 9:16, 1080p, короткими клипами 3-7 секунд.</li>
+        <li>Обязательная последовательность кадров: before -> process -> after -> detail.</li>
+        <li>Минимум 8 клипов с объекта + 1 CTA-фраза на камеру.</li>
+        <li>Raw загружается в день съемки с неймингом: YYYY-MM-DD_city_material_client.</li>
+        <li>Недельный минимум: 2 project capture + 1 showroom FAQ session.</li>
+        <li>Если cadence ломается, не усложняем продакшн: держим baseline-форматы.</li>
+      </ul>
+    </section>
 
     <h2>5) Почему нужно лицо бренда (Наталия)</h2>
     <section class="grid two">
@@ -452,7 +761,7 @@
           <li>Дает человеческое объяснение сложных тем (материалы, сроки, уход).</li>
           <li>Повышает trust в B2C и credibility в B2B.</li>
           <li>Ускоряет решение "поехать в шоурум".</li>
-          <li>По рабочей гипотезе стратегии, узнаваемое лицо бренда формирует доверие в 3-5 раз быстрее, чем безликая корпоративная подача.</li>
+          <li>По рабочей гипотезе стратегии, узнаваемое лицо бренда ускоряет доверие, но это не гарантия и проверяется по CRM/KPI.</li>
         </ul>
       </article>
       <article class="card">
@@ -490,6 +799,16 @@
         <p class="muted">Правило: один блогер = одна модель оплаты, плюс обязательная атрибуция результата (UTM/промокод/CRM-источник).</p>
       </article>
     </section>
+    <section class="card" style="margin-top:16px;">
+      <span class="pill green">Операционная модель блогеров (90 дней)</span>
+      <ul>
+        <li>M1: shortlist 15-20 и qualification 5-8.</li>
+        <li>M2: 2-3 micro-пилота + максимум 1 medium-тест.</li>
+        <li>Medium-тест допускается только после прохода Gate A+B.</li>
+        <li>Каждый тест идет на отдельный LP с UTM и source-tag в CRM.</li>
+        <li>M3: масштаб только 1-2 победителей по qualified CPL и quote-start.</li>
+      </ul>
+    </section>
 
     <h2>7) Единая воронка (B2C и B2B внутри одной системы)</h2>
     <section class="card">
@@ -526,6 +845,252 @@
       </article>
     </section>
 
+    <h2>7.1) Визуальная карта системы (как работает наш GTM в реальности)</h2>
+    <section class="viz-shell">
+      <nav class="viz-nav">
+        <button class="viz-btn active" data-viz-tab="viz-b2c">B2C Funnel</button>
+        <button class="viz-btn" data-viz-tab="viz-b2b">B2B Pipeline</button>
+        <button class="viz-btn" data-viz-tab="viz-system">System Map</button>
+        <button class="viz-btn" data-viz-tab="viz-gates">Scale Gates</button>
+      </nav>
+
+      <div class="viz-pane active" id="viz-b2c">
+        <div class="viz-funnel">
+          <article class="viz-stage">
+            <div class="viz-stage-head"><strong>Awareness</strong><span>TOFU</span></div>
+            <div class="viz-badges">
+              <span class="viz-badge seo">SEO</span>
+              <span class="viz-badge local">Maps/GBP</span>
+              <span class="viz-badge social">Instagram</span>
+              <span class="viz-badge social">Pinterest</span>
+            </div>
+            <p>Клиент впервые узнает о бренде через поиск, карту, контент и рекомендации.</p>
+            <small>KPI: клики, переходы, новые сессии</small>
+          </article>
+
+          <article class="viz-stage">
+            <div class="viz-stage-head"><strong>Interest / Consideration</strong><span>MOFU</span></div>
+            <div class="viz-badges">
+              <span class="viz-badge social">Carousels/Reels</span>
+              <span class="viz-badge seo">Material Pages</span>
+              <span class="viz-badge proof">HomeStars Proof</span>
+            </div>
+            <p>Показываем кейсы, процесс, ответы на FAQ и прозрачность по цене/срокам.</p>
+            <small>KPI: CTA clicks, form starts, showroom intent</small>
+          </article>
+
+          <article class="viz-stage">
+            <div class="viz-stage-head"><strong>Lead Capture + CRM</strong><span>BOFU</span></div>
+            <div class="viz-badges">
+              <span class="viz-badge crm">Form/Call</span>
+              <span class="viz-badge crm">Source Tag</span>
+              <span class="viz-badge crm">SLA</span>
+            </div>
+            <p>Каждый лид маршрутизируется в CRM и обрабатывается по SLA и этапам воронки.</p>
+            <small>Gate A: >=95% source-tagged | Gate B: B2C SLA &lt;=15 min в >=90% кейсов</small>
+          </article>
+
+          <article class="viz-stage">
+            <div class="viz-stage-head"><strong>Quote -> Won -> Review/Referral</strong><span>Sales/Retention</span></div>
+            <div class="viz-badges">
+              <span class="viz-badge crm">Quote Follow-up</span>
+              <span class="viz-badge proof">Review Flow</span>
+            </div>
+            <p>После сделки включается review/referral loop, который усиливает следующие продажи.</p>
+            <small>KPI: quote-to-win, review velocity, referral leads</small>
+          </article>
+        </div>
+      </div>
+
+      <div class="viz-pane" id="viz-b2b">
+        <div class="viz-steps">
+          <article class="viz-step">
+            <span class="n">1</span>
+            <h4>Targeted</h4>
+            <p>Fit-список дизайнеров, GC и партнеров по релевантным проектам.</p>
+          </article>
+          <article class="viz-step">
+            <span class="n">2</span>
+            <h4>Engaged</h4>
+            <p>Персональный outreach + кейс + условия сотрудничества.</p>
+          </article>
+          <article class="viz-step">
+            <span class="n">3</span>
+            <h4>Qualified</h4>
+            <p>Квалификация по объему, срокам, типу задач и fit.</p>
+          </article>
+          <article class="viz-step">
+            <span class="n">4</span>
+            <h4>Trial Project</h4>
+            <p>Первый проект как проверка скорости, качества и коммуникации.</p>
+          </article>
+          <article class="viz-step">
+            <span class="n">5</span>
+            <h4>Active Partner</h4>
+            <p>Повторяемый поток заказов и прогнозируемая партнерская воронка.</p>
+          </article>
+        </div>
+        <p class="muted" style="margin-top:10px;">Рабочий темп на старте: 5-8 целевых контактов в неделю без перегруза операционки.</p>
+      </div>
+
+      <div class="viz-pane" id="viz-system">
+        <div class="viz-system">
+          <article class="viz-scard">
+            <h4>Search Engine</h4>
+            <ul>
+              <li>SEO + Google Ads + GBP</li>
+              <li>Забираем горячий спрос</li>
+            </ul>
+          </article>
+          <article class="viz-scard">
+            <h4>Social + Content</h4>
+            <ul>
+              <li>Кейсы, FAQ, экспертка, price/process</li>
+              <li>Снимаем возражения до заявки</li>
+            </ul>
+          </article>
+          <article class="viz-scard">
+            <h4>Partners + Influencers</h4>
+            <ul>
+              <li>Micro-first тесты + B2B партнеры</li>
+              <li>Масштаб только после gate-pass</li>
+            </ul>
+          </article>
+          <article class="viz-scard">
+            <h4>CRM + Sales SLA</h4>
+            <ul>
+              <li>Единый source-tag и routing</li>
+              <li>Быстрый first response</li>
+            </ul>
+          </article>
+          <article class="viz-scard">
+            <h4>Review + Reputation</h4>
+            <ul>
+              <li>HomeStars как ключевой trust-asset</li>
+              <li>Регулярный review flow</li>
+            </ul>
+          </article>
+          <article class="viz-scard">
+            <h4>Reporting + Gates</h4>
+            <ul>
+              <li>Weekly decision log: scale/hold/rollback</li>
+              <li>Рост только по подтвержденным KPI</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+
+      <div class="viz-pane" id="viz-gates">
+        <div class="viz-gates">
+          <article class="viz-gate">
+            <h4>Gate A: Tracking Integrity</h4>
+            <p>>=95% leads source-tagged for 2 consecutive weeks.</p>
+            <ul>
+              <li>Pass: держим baseline, можно открывать controlled expansion.</li>
+              <li>Fail: freeze scale и фикс атрибуции/CRM QA.</li>
+            </ul>
+          </article>
+          <article class="viz-gate">
+            <h4>Gate B: SLA Control</h4>
+            <p>B2C &lt;=15 min response в >=90% working-hour leads за 2 недели.</p>
+            <ul>
+              <li>Pass: допускаем retargeting/creator tests.</li>
+              <li>Fail: пауза non-core amplification.</li>
+            </ul>
+          </article>
+          <article class="viz-gate">
+            <h4>Gate C: Unit Economics</h4>
+            <p>Last-90-day close-rate + gross-margin baseline captured; CAC guardrails approved.</p>
+            <ul>
+              <li>Pass: controlled paid scale.</li>
+              <li>Fail: бюджет не расширяем.</li>
+            </ul>
+          </article>
+          <article class="viz-gate">
+            <h4>Gate D: Capacity Stability</h4>
+            <p>No sustained SLA breach or production overload in prior 14 days.</p>
+            <ul>
+              <li>Pass: увеличиваем output там, где есть winner-signal.</li>
+              <li>Fail: удерживаем baseline и стабилизируем процесс.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <h2>7.2) Операционный аудит воронки (Pass / Needs Fix / Blocked)</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Контрольная точка</th>
+            <th>Что проверяем</th>
+            <th>Статус</th>
+            <th>Owner</th>
+            <th>Due date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Routing map</td>
+            <td>Source -> CTA -> Landing -> Form/Call -> CRM Source Tag</td>
+            <td>Pass / Needs Fix / Blocked</td>
+            <td>Growth Lead</td>
+            <td>TBD</td>
+          </tr>
+          <tr>
+            <td>Form qualification</td>
+            <td>Обязательные поля квалификации лида на всех формах</td>
+            <td>Pass / Needs Fix / Blocked</td>
+            <td>CRM Owner</td>
+            <td>TBD</td>
+          </tr>
+          <tr>
+            <td>SLA + escalation</td>
+            <td>B2C response <=15 min и правила эскалации</td>
+            <td>Pass / Needs Fix / Blocked</td>
+            <td>Sales Lead</td>
+            <td>TBD</td>
+          </tr>
+          <tr>
+            <td>Follow-up discipline</td>
+            <td>Касания до статусов quote и won/lost</td>
+            <td>Pass / Needs Fix / Blocked</td>
+            <td>Sales Lead</td>
+            <td>TBD</td>
+          </tr>
+          <tr>
+            <td>Compliance split</td>
+            <td>Review-flow и referral-flow не смешаны</td>
+            <td>Pass / Needs Fix / Blocked</td>
+            <td>Ops + Sales</td>
+            <td>TBD</td>
+          </tr>
+          <tr>
+            <td>Influencer routing</td>
+            <td>Нет influencer-трафика на общий LP без UTM/source-tag</td>
+            <td>Pass / Needs Fix / Blocked</td>
+            <td>Partnership Lead</td>
+            <td>TBD</td>
+          </tr>
+          <tr>
+            <td>Weekly decisions</td>
+            <td>Ведется log: scale / hold / rollback</td>
+            <td>Pass / Needs Fix / Blocked</td>
+            <td>Account Lead</td>
+            <td>TBD</td>
+          </tr>
+          <tr>
+            <td>Capacity guardrail</td>
+            <td>Scale разрешен только при Gate D pass</td>
+            <td>Pass / Needs Fix / Blocked</td>
+            <td>Ops Lead</td>
+            <td>TBD</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
     <h2>8) План работ: что делаем, сколько и зачем (90 дней)</h2>
     <section class="card">
       <p><strong>Логика плана:</strong> сначала убираем утечки и наводим порядок в воронке, потом включаем controlled scale. Каждый блок работ привязан к измеримому результату.</p>
@@ -550,7 +1115,7 @@
           <li>Контент-движок: 8 каруселей + 3-4 short videos + 8-10 pins.</li>
           <li>Продолжаем weekly production-loop и усиливаем winner-категории по качеству лидов.</li>
           <li>SEO/BOFU: 1 статья + 1-2 conversion updates на коммерческих страницах.</li>
-          <li>Influencer pilots: 2-3 интеграции с полной атрибуцией.</li>
+          <li>Influencer pilots: 2-3 micro-интеграции + max 1 medium-тест (только после Gate A+B).</li>
           <li>B2B outreach: 5-8 целевых контактов в неделю + follow-up.</li>
           <li>Weekly optimization: search terms, минус-слова, качество лидов, SLA-контроль.</li>
         </ul>
@@ -559,7 +1124,7 @@
         <h3>Month 3</h3>
         <ul>
           <li>Scale-lite: оставляем только winners (каналы/креативы/блогеры).</li>
-          <li>Контент: 8 каруселей + 4 short videos + 10-12 pins, перераспределение в самые сильные темы.</li>
+          <li>Контент: 8 каруселей + 3-4 short videos + 10-12 pins (только если Gate D зеленый), перераспределение в самые сильные темы.</li>
           <li>Отключаем слабые форматы и перераспределяем ресурсы в работающие.</li>
           <li>Усиливаем referral loop и B2B trial -> repeat процесс.</li>
           <li>Готовим M4+ план по фактическим данным CRM и unit economics.</li>
@@ -649,7 +1214,7 @@
           </tr>
           <tr>
             <td>Контент (owned system)</td>
-            <td>M1: weekly production-loop + 4 карусели + 2 простых видео + 6-8 pins; M2: 8 каруселей + 3-4 видео + 8-10 pins; M3: 8 каруселей + 4 видео + 10-12 pins</td>
+            <td>M1: weekly production-loop + 4 карусели + 2 простых видео + 6-8 pins; M2: 8 каруселей + 3-4 видео + 8-10 pins; M3: 8 каруселей + 3-4 видео + 10-12 pins только при Gate D</td>
             <td>Построить доверие и закрывать возражения по пути к заявке</td>
             <td>Стабильный поток MOFU/BOFU ассетов с CTA</td>
           </tr>
@@ -667,7 +1232,7 @@
           </tr>
           <tr>
             <td>Блогеры (native tests)</td>
-            <td>M1: shortlist 15-20, qualify 5-8; M2: 2-3 пилота; M3: 1-2 winners</td>
+            <td>M1: shortlist 15-20, qualify 5-8; M2: 2-3 micro-пилота + max 1 medium-тест; M3: 1-2 winners</td>
             <td>Получить доверие через личные рекомендации, а не через “рекламный пуш”</td>
             <td>Понятные winner-форматы и прогнозируемый assisted lead flow</td>
           </tr>
@@ -710,6 +1275,7 @@
           <li>Общий диапазон: <strong>CAD 3,800-4,350</strong>.</li>
           <li>Retainer: <strong>CAD 3,200</strong>.</li>
           <li>Третьи стороны/инструменты: <strong>CAD 600-1,150</strong>.</li>
+          <li>3-Month envelope: <strong>CAD 14,700-19,550</strong>.</li>
           <li>Дальше масштаб только после Go/No-Go гейтов.</li>
         </ul>
       </article>
@@ -780,6 +1346,8 @@
           <li>Есть база прошлых лидов/клиентов с контактами?</li>
           <li>Есть сегментация: выигранные/проигранные/уснувшие?</li>
           <li>Какие каналы реактивации доступны (email/SMS/WhatsApp)?</li>
+          <li>Согласуем ли заранее policy по базе: кого можно контактировать, как часто и каким тоном?</li>
+          <li>Фиксируем ли лимит касаний в неделю/месяц и stop-contact правило?</li>
           <li>Кто юридически согласует коммуникации?</li>
         </ul>
       </article>
@@ -788,8 +1356,8 @@
     <h2>11) Что важно услышать клиенту на встрече</h2>
     <section class="card">
       <dl class="faq">
-        <dt>Почему не стартуем сразу с большого SMM и бюджета?</dt>
-        <dd>Потому что без рабочей воронки это будет дорогой шум, а не продажи.</dd>
+        <dt>Почему запускаем SMM в бережном режиме?</dt>
+        <dd>Чтобы быстро начать контент, но не потерять деньги на утечках: сначала дисциплина маршрутизации, SLA и CRM, затем масштаб winners.</dd>
         <dt>Где в проекте контент и зачем он нужен?</dt>
         <dd>Контент — это база доверия: человек видит реальные работы, процесс и отзывы, после чего оставляет заявку.</dd>
         <dt>Зачем лицо бренда?</dt>
@@ -811,7 +1379,26 @@
       <p class="muted">Сначала системная операционка и прозрачные KPI, затем масштаб.</p>
     </section>
 
-    <p class="foot">Версия: expanded client one-page / GTM operating narrative</p>
+    <p class="foot">Версия: client one-page v2 / lean SMM operating narrative</p>
   </main>
+
+  <script>
+    (function () {
+      var vizButtons = document.querySelectorAll('.viz-btn');
+      var vizPanes = document.querySelectorAll('.viz-pane');
+      if (!vizButtons.length) return;
+
+      vizButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var target = btn.getAttribute('data-viz-tab');
+          vizButtons.forEach(function (b) { b.classList.remove('active'); });
+          vizPanes.forEach(function (p) { p.classList.remove('active'); });
+          btn.classList.add('active');
+          var pane = document.getElementById(target);
+          if (pane) pane.classList.add('active');
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
