@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frederik Growth Engine - Client Roadmap 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #f7f2e8;
+      --paper-2: #fffaf2;
+      --ink: #10213b;
+      --ink-soft: #3f5070;
+      --line: #d8cdb8;
+      --brand: #0f8f8a;
+      --brand-2: #0b6e89;
+      --sun: #f5a524;
+      --sun-soft: #ffefcf;
+      --berry: #cc4f4f;
+      --ok: #1b8f5a;
+      --card: #fffdf9;
+      --shadow: 0 14px 36px rgba(16, 33, 59, 0.09);
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Manrope", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 8% 5%, rgba(15, 143, 138, 0.14), transparent 32%),
+        radial-gradient(circle at 92% 12%, rgba(245, 165, 36, 0.16), transparent 30%),
+        linear-gradient(180deg, var(--paper) 0%, var(--paper-2) 100%);
+      line-height: 1.55;
+      overflow-x: hidden;
+    }
+
+    .grain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.12;
+      background-image: radial-gradient(rgba(0, 0, 0, 0.06) 0.6px, transparent 0.6px);
+      background-size: 4px 4px;
+      z-index: -1;
+    }
+
+    .wrap {
+      width: min(1180px, 94vw);
+      margin: 0 auto 96px;
+    }
+
+    .hero {
+      padding: 64px 0 36px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 20px;
+      align-items: end;
+    }
+
+    .hero h1 {
+      font-family: "Sora", sans-serif;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.06;
+      font-size: clamp(34px, 5vw, 68px);
+      margin-bottom: 12px;
+      max-width: 860px;
+    }
+
+    .hero h1 span {
+      color: var(--brand);
+    }
+
+    .hero p {
+      color: var(--ink-soft);
+      font-size: clamp(15px, 1.6vw, 19px);
+      max-width: 780px;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      justify-self: end;
+      align-items: flex-end;
+    }
+
+    .pill {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      background: rgba(255, 255, 255, 0.64);
+      backdrop-filter: blur(4px);
+      color: var(--ink-soft);
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .pill b {
+      color: var(--brand-2);
+    }
+
+    .intro {
+      margin-top: 18px;
+      border: 1px solid rgba(15, 143, 138, 0.3);
+      background: linear-gradient(150deg, rgba(15, 143, 138, 0.09), rgba(15, 143, 138, 0.02));
+      border-radius: var(--radius);
+      padding: 22px 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .intro strong {
+      color: var(--brand-2);
+    }
+
+    nav {
+      margin: 24px 0 36px;
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      padding: 12px 0;
+      background: linear-gradient(180deg, rgba(247, 242, 232, 0.92), rgba(247, 242, 232, 0.74));
+      backdrop-filter: blur(8px);
+    }
+
+    nav ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      list-style: none;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--ink-soft);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      background: rgba(255, 255, 255, 0.68);
+      transition: 0.2s ease;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: var(--paper-2);
+      border-color: var(--brand-2);
+      background: var(--brand-2);
+      transform: translateY(-1px);
+    }
+
+    section {
+      margin-bottom: 22px;
+      scroll-margin-top: 88px;
+      background: var(--card);
+      border: 1px solid rgba(216, 205, 184, 0.74);
+      border-radius: 22px;
+      padding: 26px;
+      box-shadow: var(--shadow);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.58s ease, transform 0.58s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: baseline;
+      margin-bottom: 14px;
+    }
+
+    .section-head h2 {
+      font-family: "Sora", sans-serif;
+      font-size: clamp(22px, 2.3vw, 34px);
+      letter-spacing: -0.02em;
+    }
+
+    .section-head p {
+      font-size: 13px;
+      color: var(--ink-soft);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 12px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: linear-gradient(180deg, #fffefb, #fff9f2);
+      padding: 16px;
+    }
+
+    .card h3 {
+      font-size: 15px;
+      margin-bottom: 6px;
+      color: var(--ink);
+    }
+
+    .card p,
+    .card li {
+      font-size: 14px;
+      color: var(--ink-soft);
+    }
+
+    .card ul {
+      padding-left: 17px;
+      margin-top: 8px;
+      display: grid;
+      gap: 5px;
+    }
+
+    .kpi-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .kpi {
+      background: linear-gradient(145deg, #f7f7f0, #fffdf7);
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .kpi .num {
+      display: block;
+      font-family: "Sora", sans-serif;
+      font-size: 24px;
+      color: var(--brand-2);
+      margin-bottom: 2px;
+    }
+
+    .kpi .label {
+      font-size: 11px;
+      letter-spacing: 0.03em;
+      color: var(--ink-soft);
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .funnel {
+      display: grid;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .step {
+      border-radius: 12px;
+      border: 1px solid transparent;
+      padding: 11px 14px;
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: center;
+      font-size: 14px;
+    }
+
+    .s1 { background: #dff8f0; border-color: #adddcd; width: 96%; }
+    .s2 { background: #edf8ff; border-color: #bdd7e7; width: 84%; }
+    .s3 { background: #fff4df; border-color: #e9d3a2; width: 70%; }
+    .s4 { background: #ffe9da; border-color: #e7c5ae; width: 56%; }
+    .s5 { background: #ffe2dd; border-color: #e5bab1; width: 42%; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      font-size: 13px;
+    }
+
+    th {
+      text-align: left;
+      background: #f4ecdf;
+      border-bottom: 1px solid var(--line);
+      padding: 9px 8px;
+      color: var(--ink);
+      font-weight: 800;
+    }
+
+    td {
+      border-bottom: 1px solid #eee3d2;
+      padding: 9px 8px;
+      color: var(--ink-soft);
+      vertical-align: top;
+    }
+
+    .phase-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: var(--ink);
+      font-weight: 800;
+      margin-bottom: 7px;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--brand);
+      box-shadow: 0 0 0 3px rgba(15, 143, 138, 0.18);
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .timeline .node {
+      border-left: 3px solid #cfd6df;
+      padding: 0 0 0 15px;
+      position: relative;
+    }
+
+    .timeline .node::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--brand-2);
+      position: absolute;
+      top: 6px;
+      left: -6px;
+      box-shadow: 0 0 0 3px rgba(11, 110, 137, 0.18);
+    }
+
+    .timeline .when {
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--brand-2);
+      font-weight: 800;
+      margin-bottom: 3px;
+    }
+
+    .timeline .what {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 3px;
+    }
+
+    .timeline .why {
+      font-size: 13px;
+      color: var(--ink-soft);
+    }
+
+    .stack {
+      display: grid;
+      gap: 8px;
+    }
+
+    .stack .line {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 14px;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+      background: #fffefb;
+    }
+
+    .stack .line b {
+      color: var(--ink);
+    }
+
+    .badge {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 4px 9px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 800;
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+
+    .b-reach { background: #e8f8f4; color: #0b7b65; border-color: #bde4d8; }
+    .b-trust { background: #edf4ff; color: #1f5a8f; border-color: #c4d7ef; }
+    .b-conv { background: #fff2df; color: #996618; border-color: #e8cd99; }
+
+    .playbook {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(150px, 1fr));
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .playbook .box {
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      padding: 10px;
+      background: #fffdfa;
+    }
+
+    .playbook .box .n {
+      font-family: "Sora", sans-serif;
+      color: var(--brand-2);
+      font-size: 17px;
+      margin-bottom: 4px;
+    }
+
+    .playbook .box h4 {
+      font-size: 13px;
+      margin-bottom: 3px;
+    }
+
+    .playbook .box p {
+      font-size: 12px;
+      color: var(--ink-soft);
+    }
+
+    .do-dont {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px;
+    }
+
+    .panel.good { background: #e9f9ef; border-color: #badfc8; }
+    .panel.bad { background: #fff0ed; border-color: #e6bcb2; }
+
+    .panel h4 {
+      font-size: 13px;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .panel ul {
+      padding-left: 16px;
+      display: grid;
+      gap: 4px;
+      font-size: 13px;
+      color: var(--ink-soft);
+    }
+
+    .loop {
+      border: 1px dashed #c6ced8;
+      border-radius: 12px;
+      padding: 12px;
+      margin-top: 8px;
+      background: #fffefc;
+    }
+
+    .loop .chain {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .link {
+      border: 1px solid var(--line);
+      background: #f9f5ec;
+      border-radius: 10px;
+      padding: 8px 11px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .arr {
+      color: #71819a;
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .alert {
+      border-radius: 12px;
+      padding: 12px;
+      margin-top: 10px;
+      border: 1px solid;
+      font-size: 13px;
+    }
+
+    .a-info { background: #ebf8ff; border-color: #b8dced; color: #1f607f; }
+    .a-ok { background: #edf9f2; border-color: #b8e1c6; color: #256b42; }
+    .a-warn { background: #fff3e6; border-color: #e7cf9a; color: #8b5c1b; }
+    .a-risk { background: #fff0ed; border-color: #e3b6ac; color: #964d3f; }
+
+    .footer {
+      margin-top: 24px;
+      text-align: center;
+      color: var(--ink-soft);
+      font-size: 12px;
+    }
+
+    .footer b {
+      color: var(--ink);
+    }
+
+    @media (max-width: 980px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-meta {
+        justify-self: start;
+        align-items: flex-start;
+      }
+
+      .kpi-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .playbook {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .do-dont {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 700px) {
+      section {
+        padding: 18px;
+        border-radius: 17px;
+      }
+
+      nav ul {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 6px;
+      }
+
+      nav ul::-webkit-scrollbar {
+        height: 6px;
+      }
+
+      nav ul::-webkit-scrollbar-thumb {
+        background: #c8b89c;
+        border-radius: 999px;
+      }
+
+      .grid {
+        display: block;
+      }
+
+      .grid > * {
+        margin-bottom: 9px;
+      }
+
+      .playbook {
+        grid-template-columns: 1fr;
+      }
+
+      .step {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="grain"></div>
+  <div class="wrap">
+    <header class="hero reveal">
+      <div>
+        <h1>Frederik Growth Engine 2026: <span>как через контент системно получать больше клиентов</span></h1>
+        <p>Полная клиентская страница: что, зачем и когда делаем; как снимаем и перерабатываем контент; как заходим в сообщества; как превращаем trust в консультации и ретейнеры.</p>
+        <div class="intro">
+          <strong>Одна строка стратегии:</strong> сначала trust и инфраструктура intake, затем тесты форматов в ключевых сегментах, затем масштаб только по каналам с подтвержденными метриками.
+        </div>
+      </div>
+      <div class="hero-meta">
+        <div class="pill">Горизонт: <b>6 месяцев</b></div>
+        <div class="pill">Приоритет: <b>CUAET + Uber, Trucking</b></div>
+        <div class="pill">Paid старт: <b>с Month 3 после валидации</b></div>
+      </div>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="#north-star">North Star</a></li>
+        <li><a href="#roadmap">Roadmap</a></li>
+        <li><a href="#formats">Форматы</a></li>
+        <li><a href="#pilot">Пилот Катя</a></li>
+        <li><a href="#production">Как снимаем</a></li>
+        <li><a href="#distribution">Публикация/лиды</a></li>
+        <li><a href="#community">Комьюнити</a></li>
+        <li><a href="#growth">Как растем</a></li>
+        <li><a href="#kpi">KPI/Gates</a></li>
+        <li><a href="#storyline">История запуска</a></li>
+        <li><a href="#first30">Первые 30 дней</a></li>
+      </ul>
+    </nav>
+
+    <section id="north-star" class="reveal">
+      <div class="section-head">
+        <h2>North Star: что, зачем, какой результат</h2>
+        <p>Strategy Foundation</p>
+      </div>
+      <div class="grid">
+        <article class="card" style="grid-column: span 4;">
+          <h3>Что делаем</h3>
+          <ul>
+            <li>Запускаем контент-машину и bridge-интервью.</li>
+            <li>Системно отвечаем в чатах/форумах (help-first).</li>
+            <li>Держим intake-SLA, чтобы не терять горячие обращения.</li>
+          </ul>
+        </article>
+        <article class="card" style="grid-column: span 4;">
+          <h3>Зачем делаем</h3>
+          <ul>
+            <li>Снизить страх и недоверие до аварии.</li>
+            <li>Повысить долю warm лидов против случайного трафика.</li>
+            <li>Получать предсказуемый поток консультаций.</li>
+          </ul>
+        </article>
+        <article class="card" style="grid-column: span 4;">
+          <h3>Когда и как масштабируем</h3>
+          <ul>
+            <li>Month 1-2: тесты и валидация связки.</li>
+            <li>Month 3: вебинар + мягкий paid (если пройдены гейты).</li>
+            <li>Month 4-6: controlled scale победителей.</li>
+          </ul>
+        </article>
+      </div>
+      <div class="kpi-strip">
+        <div class="kpi"><span class="num">1-5</span><span class="label">Лидов в Month 1 (реалистично)</span></div>
+        <div class="kpi"><span class="num">&lt;5 мин</span><span class="label">Целевой speed-to-lead</span></div>
+        <div class="kpi"><span class="num">60-70%</span><span class="label">Lead -> Consultation</span></div>
+        <div class="kpi"><span class="num">30-50%</span><span class="label">Consultation -> Retainer</span></div>
+      </div>
+    </section>
+
+    <section class="reveal">
+      <div class="section-head">
+        <h2>Как путь клиента превращается в ретейнер</h2>
+        <p>Trust Funnel</p>
+      </div>
+      <div class="funnel">
+        <div class="step s1"><span>1) Видит контент и рекомендации в сообществах</span><span>Reach</span></div>
+        <div class="step s2"><span>2) Начинает доверять и сохраняет контакт Frederik</span><span>Trust</span></div>
+        <div class="step s3"><span>3) Пишет в DM/WhatsApp/звонит после инцидента</span><span>Intent</span></div>
+        <div class="step s4"><span>4) Получает быстрый intake и консультацию</span><span>Consult</span></div>
+        <div class="step s5"><span>5) Переходит в ретейнер</span><span>Retainer</span></div>
+      </div>
+      <div class="alert a-info">Фокус первых 60 дней: не гнаться за объемом, а собрать рабочую систему, где каждая заявка фиксируется, обрабатывается быстро и дожимается до решения.</div>
+    </section>
+
+    <section id="roadmap" class="reveal">
+      <div class="section-head">
+        <h2>Roadmap 6 месяцев: что делаем по этапам</h2>
+        <p>Execution Timeline</p>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Период</th>
+            <th>Что делаем</th>
+            <th>Зачем</th>
+            <th>Гейт перехода</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>Week 1-2</b><br>Feb 16 - Mar 1, 2026</td>
+            <td>Setup: GMB, CRM/трекер, intake, CTA, consent/compliance, контент-план</td>
+            <td>Не терять лиды и подготовить базу для роста</td>
+            <td>Инфраструктура live, SLA подтвержден</td>
+          </tr>
+          <tr>
+            <td><b>Week 3-4</b><br>Mar 2 - Mar 15, 2026</td>
+            <td>Пилот с Катей (и актёрские reenact-сцены): тест форматов D/R/A/Q, 6-10 shorts, 1 Q&A/нед; интервью с мостом в конце этапа</td>
+            <td>Сначала проверить форматы и хуки на управляемом кейсе, потом усиливать доверие через мост</td>
+            <td>Первые DM/лиды, source attribution есть, понятны winning formats</td>
+          </tr>
+          <tr>
+            <td><b>Month 2</b><br>Mar 16 - Apr 15, 2026</td>
+            <td>Bridge #2, Q&A-ритм, SEO/FAQ, форумная активность, micro-influencer test</td>
+            <td>Расширить охват без потери качества</td>
+            <td>Стабильные лиды, CPL в рабочем диапазоне</td>
+          </tr>
+          <tr>
+            <td><b>Month 3</b><br>Apr 16 - May 15, 2026</td>
+            <td>Первый вебинар + repurpose, optional soft paid</td>
+            <td>Перевести органику в управляемый pipeline</td>
+            <td>SLA + CPL + conversions подтверждены</td>
+          </tr>
+          <tr>
+            <td><b>Month 4-6</b><br>May 16 - Aug 15, 2026</td>
+            <td>Масштаб: регулярные вебинары/ивенты, больше мостов, controlled PPC/retargeting</td>
+            <td>Расти по ретейнерам без просадки качества</td>
+            <td>Monthly growth без провала конверсий</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="reveal">
+      <div class="section-head">
+        <h2>Этапы запуска в реальном порядке</h2>
+        <p>Why This Sequence</p>
+      </div>
+      <div class="timeline">
+        <div class="node">
+          <div class="when">Step 1</div>
+          <div class="what">Сначала intake и trust-assets</div>
+          <div class="why">Без этого любой трафик сгорит: лиды приходят, но не конвертируются.</div>
+        </div>
+        <div class="node">
+          <div class="when">Step 2</div>
+          <div class="what">Пилот форматов с Катей + мягкий community ops</div>
+          <div class="why">Сначала выбираем рабочие хуки и формат, чтобы в мост идти уже с сильным и понятным контентом.</div>
+        </div>
+        <div class="node">
+          <div class="when">Step 3</div>
+          <div class="what">Подключаем мост и усиливаем дистрибуцию победивших форматов</div>
+          <div class="why">Bridge усиливает доверие, когда уже есть подтвержденный контент-скелет.</div>
+        </div>
+        <div class="node">
+          <div class="when">Step 4</div>
+          <div class="what">Только после данных включаем paid и масштаб</div>
+          <div class="why">Рост строится на подтвержденных форматах, а не на догадках.</div>
+        </div>
+      </div>
+      <div class="alert a-warn">Rule: если CPL > 300 CAD две недели подряд, канал уходит на паузу и переработку.</div>
+    </section>
+
+    <section id="formats" class="reveal">
+      <div class="section-head">
+        <h2>Форматы контента: что публикуем и зачем</h2>
+        <p>Content Matrix</p>
+      </div>
+      <div class="stack">
+        <div class="line">
+          <div><b>Shorts (30-60 сек)</b> — хук + ошибка + короткий action-step</div>
+          <span class="badge b-reach">6-10 / месяц</span>
+        </div>
+        <div class="line">
+          <div><b>Long interview (5-15 мин)</b> — глубокий разбор кейса/боли</div>
+          <span class="badge b-trust">1 / месяц</span>
+        </div>
+        <div class="line">
+          <div><b>Q&A из чатов</b> — ответы на реальные вопросы аудитории</div>
+          <span class="badge b-conv">1 / неделя</span>
+        </div>
+        <div class="line">
+          <div><b>Carousel / checklist</b> — сохраняемый контент "что делать после ДТП"</div>
+          <span class="badge b-reach">2 / месяц</span>
+        </div>
+        <div class="line">
+          <div><b>Forum answers</b> — help-first ответы в точке намерения</div>
+          <span class="badge b-conv">3-5 ответов / неделя</span>
+        </div>
+      </div>
+      <div class="alert a-ok">Один anchor-интервью блок (30-40 мин) распаковывается в long + shorts + carousel + FAQ + forum answers + SEO draft.</div>
+    </section>
+
+    <section id="pilot" class="reveal">
+      <div class="section-head">
+        <h2>Пилот Month 1: сначала Катя и тест форматов, затем мост</h2>
+        <p>Format Testing Plan</p>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Порядок</th>
+            <th>Что снимаем</th>
+            <th>Форматы/коды</th>
+            <th>Зачем тестируем</th>
+            <th>Сигнал "работает"</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>Шаг 1</b></td>
+            <td>Катя: диалоги и личная история кейса</td>
+            <td>D1-D5, R1-R4</td>
+            <td>Проверить, какие боли цепляют аудиторию в первые 3 секунды</td>
+            <td>Saves/DM выше baseline, удержание по short > 50%</td>
+          </tr>
+          <tr>
+            <td><b>Шаг 2</b></td>
+            <td>Катя + актёрские mini-reenact сцены</td>
+            <td>Short drama / near-miss hooks</td>
+            <td>Проверить, работает ли "сценарный" формат лучше обычного talking-head</td>
+            <td>Рост досмотров и пересылок в чатах</td>
+          </tr>
+          <tr>
+            <td><b>Шаг 3</b></td>
+            <td>Frederik реакция и разбор</td>
+            <td>A1-A8, A9-A11</td>
+            <td>Перевести историю в экспертный формат и масштабируемый конвейер</td>
+            <td>Вопросы в DM по шагам после ДТП</td>
+          </tr>
+          <tr>
+            <td><b>Шаг 4</b></td>
+            <td>Q&A по вопросам из комментариев/чатов</td>
+            <td>Q1-Q5</td>
+            <td>Снять возражения и повысить конверсию из просмотра в контакт</td>
+            <td>Увеличение лидов из Q&A постов</td>
+          </tr>
+          <tr>
+            <td><b>Шаг 5</b></td>
+            <td>Интервью с мостом (Andrey/другой ключевой мост)</td>
+            <td>Bridge interview</td>
+            <td>Добавить trust transfer после тестов победивших форматов</td>
+            <td>Первые warm leads прямо из группы моста</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="alert a-info"><b>Логика порядка:</b> сначала Катя помогает безопасно протестировать формат и язык подачи, потом мост усиливает доверие и дает быстрый доступ к своей аудитории.</div>
+      <div class="alert a-ok"><b>Важно:</b> это не "контент ради контента". Каждый формат тестируется под метрику и либо масштабируется, либо выключается.</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Текст формата</th>
+            <th>Пример строки с Катей</th>
+            <th>Роль в воронке</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>D (диалог)</td>
+            <td>"Этот номер я сохранила случайно. Он реально пригодился."</td>
+            <td>Эмоциональный trust и узнавание</td>
+          </tr>
+          <tr>
+            <td>R (отзыв)</td>
+            <td>"Я боялась, что меня выгонят из страны за аварию."</td>
+            <td>Снятие главного страха newcomers</td>
+          </tr>
+          <tr>
+            <td>A (разбор Frederik)</td>
+            <td>"Она сказала 'я в порядке'. Это ошибка, которую делают почти все."</td>
+            <td>Экспертность и практические шаги</td>
+          </tr>
+          <tr>
+            <td>Q (вопрос-ответ)</td>
+            <td>"Если я на Uber и попал в аварию, кто реально отвечает?"</td>
+            <td>Конверсия в DM/консультацию</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="production" class="reveal">
+      <div class="section-head">
+        <h2>Как снимаем без перегруза Frederik и как команда это превращает в лиды</h2>
+        <p>Operating System</p>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>День</th>
+            <th>Что происходит</th>
+            <th>Кто отвечает</th>
+            <th>Зачем это шаг</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>Monday</b></td>
+            <td>Редакционный спринт 30-45 мин: тема недели, главная боль, CTA, сегмент</td>
+            <td>Frederik + координатор</td>
+            <td>Короткий фокус-слот, без длинных созвонов</td>
+          </tr>
+          <tr>
+            <td><b>Tuesday (batch week)</b></td>
+            <td>Съёмка 60-90 мин: сначала Катя/актерские форматы, в отдельный день мост</td>
+            <td>Frederik</td>
+            <td>Один компактный съемочный блок дает контент на 1-2 недели</td>
+          </tr>
+          <tr>
+            <td><b>Wednesday</b></td>
+            <td>Монтаж, субтитры, карусель, Q&A пост, SEO-черновик</td>
+            <td>Команда</td>
+            <td>Большая часть нагрузки на команде, не на Frederik</td>
+          </tr>
+          <tr>
+            <td><b>Thursday</b></td>
+            <td>Публикация + посев в IG/TikTok/YouTube/TG/FB + профильные группы</td>
+            <td>Команда</td>
+            <td>Мультиканальная дистрибуция без дополнительного времени Frederik</td>
+          </tr>
+          <tr>
+            <td><b>Friday</b></td>
+            <td>Community responses, фиксация лидов, weekly review (30 мин)</td>
+            <td>Frederik + команда</td>
+            <td>Принять решение scale/optimize/pause по фактам</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="alert a-info"><b>Анти-выгорание:</b> целевая личная нагрузка Frederik на контент 4-6 часов в неделю, остальное делает команда по шаблонам.</div>
+      <div class="alert a-ok"><b>Месячный ритм:</b> 1 webinar/event, который repurpose в 4-6 shorts + 1 статью + FAQ-пакет.</div>
+    </section>
+
+    <section id="distribution" class="reveal">
+      <div class="section-head">
+        <h2>Куда публикуем и откуда приходят клиенты</h2>
+        <p>Distribution and Lead Sources</p>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Канал</th>
+            <th>Что публикуем</th>
+            <th>Куда ведем человека</th>
+            <th>Откуда приходят лиды</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Instagram / TikTok / YouTube Shorts</td>
+            <td>Hooks из Кати, разборы Frederik, мини-драмы, Q&A shorts</td>
+            <td>DM / WhatsApp / звонок</td>
+            <td>Новые warm-inbound, кто "узнал лицо" до инцидента</td>
+          </tr>
+          <tr>
+            <td>Telegram канал + чат</td>
+            <td>Полная история кейса, чек-листы, weekly Q&A, закрепы</td>
+            <td>Личный контакт + быстрый intake</td>
+            <td>Самый горячий поток после просмотров и репостов</td>
+          </tr>
+          <tr>
+            <td>Группы мостов (TG/FB/WA)</td>
+            <td>Интервью с мостом, quote cards, короткие полезные разборы</td>
+            <td>Рекомендация -> прямой контакт</td>
+            <td>Реферальные warm-лиды с высокой конверсией</td>
+          </tr>
+          <tr>
+            <td>Форумы / Reddit / локальные community boards</td>
+            <td>Help-first ответы на конкретные кейсы + чек-лист "24 часа"</td>
+            <td>DM / форма / звонок</td>
+            <td>Высокий intent: люди уже ищут решение своей ситуации</td>
+          </tr>
+          <tr>
+            <td>Webinar / live Q&A</td>
+            <td>Разбор сценариев, ответы на возражения, кейсы</td>
+            <td>Регистрация -> follow-up -> консультация</td>
+            <td>Сегментно квалифицированные лиды после мероприятия</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="alert a-info"><b>Правило трекинга:</b> у каждого входящего лида фиксируем `channel + content_id + bridge_name + response_time`, чтобы точно видеть, что реально приносит клиентов.</div>
+    </section>
+
+    <section id="community" class="reveal">
+      <div class="section-head">
+        <h2>Как заходим в сообщества и не выглядим как спам</h2>
+        <p>Community Entry Playbook</p>
+      </div>
+      <div class="playbook">
+        <article class="box">
+          <div class="n">01</div>
+          <h4>Наблюдаем</h4>
+          <p>7-10 дней читаем чат, фиксируем типовые боли, тон и правила группы.</p>
+        </article>
+        <article class="box">
+          <div class="n">02</div>
+          <h4>Помогаем</h4>
+          <p>Даем 3-5 полезных ответов в неделю без продажи и без давления.</p>
+        </article>
+        <article class="box">
+          <div class="n">03</div>
+          <h4>Подключаем мост</h4>
+          <p>Админ/лидер задает вопросы, Frederik отвечает в формате "разговор со своим".</p>
+        </article>
+        <article class="box">
+          <div class="n">04</div>
+          <h4>Закрепляем пользу</h4>
+          <p>Pinned checklist и Q&A посты, чтобы участники быстро находили нужные шаги.</p>
+        </article>
+        <article class="box">
+          <div class="n">05</div>
+          <h4>Переводим в intake</h4>
+          <p>Только мягкий CTA: сохраните номер, пишите в личку, если ситуация срочная.</p>
+        </article>
+      </div>
+
+      <div class="do-dont">
+        <div class="panel good">
+          <h4>Do</h4>
+          <ul>
+            <li>Объяснять простым языком и с примерами.</li>
+            <li>Давать чек-листы "первые 24 часа".</li>
+            <li>Использовать локальные боли сегмента (Uber/Trucking/CUAET).</li>
+            <li>Отвечать быстро в рабочее окно.</li>
+          </ul>
+        </div>
+        <div class="panel bad">
+          <h4>Don't</h4>
+          <ul>
+            <li>Писать "обратитесь ко мне срочно" под каждым постом.</li>
+            <li>Обещать суммы и гарантировать результат.</li>
+            <li>Спорить с админами и нарушать правила групп.</li>
+            <li>Публиковать клиентские детали без consent.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="growth" class="reveal">
+      <div class="section-head">
+        <h2>Как именно получаем больше клиентов: 4 петли роста</h2>
+        <p>Growth Loops</p>
+      </div>
+      <div class="loop">
+        <div class="phase-title"><span class="dot"></span>Loop 1: Trust Loop</div>
+        <div class="chain">
+          <span class="link">Shorts + Q&A</span><span class="arr">→</span>
+          <span class="link">Повторные касания в комьюнити</span><span class="arr">→</span>
+          <span class="link">"Я уже видел Frederik"</span><span class="arr">→</span>
+          <span class="link">Теплый входящий</span>
+        </div>
+      </div>
+      <div class="loop">
+        <div class="phase-title"><span class="dot"></span>Loop 2: Response Loop</div>
+        <div class="chain">
+          <span class="link">Быстрый ответ (&lt;5 мин)</span><span class="arr">→</span>
+          <span class="link">Больше консультаций</span><span class="arr">→</span>
+          <span class="link">Выше доля ретейнеров</span><span class="arr">→</span>
+          <span class="link">Больше кейсов для контента</span>
+        </div>
+      </div>
+      <div class="loop">
+        <div class="phase-title"><span class="dot"></span>Loop 3: Repurpose Loop</div>
+        <div class="chain">
+          <span class="link">1 съемка</span><span class="arr">→</span>
+          <span class="link">10+ единиц контента</span><span class="arr">→</span>
+          <span class="link">Больше каналов / меньше стоимость</span><span class="arr">→</span>
+          <span class="link">Рост доверия и лидов</span>
+        </div>
+      </div>
+      <div class="loop">
+        <div class="phase-title"><span class="dot"></span>Loop 4: Bridge Loop</div>
+        <div class="chain">
+          <span class="link">Интервью с мостом</span><span class="arr">→</span>
+          <span class="link">Репост в группу</span><span class="arr">→</span>
+          <span class="link">Первые warm лиды</span><span class="arr">→</span>
+          <span class="link">Подключаем bridge #2, #3</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="kpi" class="reveal">
+      <div class="section-head">
+        <h2>KPI и decision gates: когда scale, когда pause</h2>
+        <p>Control Tower</p>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Метрика</th>
+            <th>Scale</th>
+            <th>Optimize</th>
+            <th>Pause/Pivot</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>CPL</td>
+            <td>&lt;150 CAD</td>
+            <td>150-300 CAD</td>
+            <td>&gt;300 CAD (2 недели)</td>
+          </tr>
+          <tr>
+            <td>Speed-to-lead</td>
+            <td>&lt;5 мин (цель)</td>
+            <td>5-15 мин</td>
+            <td>&gt;15 мин системно</td>
+          </tr>
+          <tr>
+            <td>Lead -> Consultation</td>
+            <td>&gt;60%</td>
+            <td>40-60%</td>
+            <td>&lt;40%</td>
+          </tr>
+          <tr>
+            <td>Consultation -> Retainer</td>
+            <td>&gt;30%</td>
+            <td>20-30%</td>
+            <td>&lt;20%</td>
+          </tr>
+          <tr>
+            <td>Bridge performance</td>
+            <td>&gt;3 лидов/мес</td>
+            <td>1-2 лид/мес</td>
+            <td>0 лидов/30 дней</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="alert a-risk">Если метрика падает, сначала меняем формат/угол/сегмент. Не масштабируем канал только потому, что "он модный".</div>
+      <div class="alert a-ok">Monthly review обязательно заканчивается формальным решением: <b>scale</b>, <b>optimize</b> или <b>pause</b>.</div>
+    </section>
+
+    <section id="storyline" class="reveal">
+      <div class="section-head">
+        <h2>Как это выглядит в реальности: история запуска Frederik</h2>
+        <p>Storyline</p>
+      </div>
+      <div class="timeline">
+        <div class="node">
+          <div class="when">Week 1 · Monday morning</div>
+          <div class="what">Frederik не получает "еще один маркетинг-план", а видит рабочую неделю с четкой нагрузкой</div>
+          <div class="why">Мы сразу фиксируем реальный ритм: один контент-спринт, один съемочный слот и один weekly review. Это отвечает на вопрос "сколько времени мне нужно лично".</div>
+        </div>
+        <div class="node">
+          <div class="when">Week 2 · first anchor shoot</div>
+          <div class="what">Первая волна: Катя и актерские форматы тестируют язык, хуки и структуру</div>
+          <div class="why">Вместо хаотичных постов: D/R/A/Q форматы, понятные метрики и выбор только лучших связок.</div>
+        </div>
+        <div class="node">
+          <div class="when">Week 3 · bridge day</div>
+          <div class="what">После первых сигналов подключается мост и усиливает доверие в своей группе</div>
+          <div class="why">Мост не заменяет контент-пилот, а масштабирует то, что уже доказало отклик.</div>
+        </div>
+        <div class="node">
+          <div class="when">Week 3-4 · first hot inbound</div>
+          <div class="what">Входящий из чата приходит в момент, когда Frederik на встрече, но лид не теряется</div>
+          <div class="why">Срабатывает backup-intake: авто-SMS, voicemail и callback по SLA. Это отвечает на страх "а если я физически не успеваю отвечать".</div>
+        </div>
+        <div class="node">
+          <div class="when">End of Month 1 · review room</div>
+          <div class="what">Команда не говорит "кажется идет", а открывает цифры по каналам</div>
+          <div class="why">Смотрим baseline: лиды, quality, speed-to-lead, conversion. Здесь нет хайпа: в Month 1 мы валидируем систему, а не обещаем потолок по ретейнерам.</div>
+        </div>
+        <div class="node">
+          <div class="when">Month 3 · scale decision</div>
+          <div class="what">Paid и масштаб включаются только там, где organic уже доказал рабочую экономику</div>
+          <div class="why">Если CPL и conversion не проходят гейт — не раздуваем бюджет. Если проходят — аккуратно усиливаем winners и расширяем мосты.</div>
+        </div>
+      </div>
+      <div class="alert a-info"><b>Суть для клиента:</b> мы не продаем "волшебный результат". Мы показываем предсказуемую систему, где каждую неделю понятно, что делаем, зачем делаем и что меняем по данным.</div>
+      <div class="alert a-ok"><b>Что обещаем:</b> дисциплину процесса, скорость реакции, прозрачную отчетность и управляемые решения. <b>Что не обещаем:</b> гарантированные суммы и исходы кейсов.</div>
+    </section>
+
+    <section class="reveal">
+      <div class="section-head">
+        <h2>Compliance и качество коммуникации</h2>
+        <p>Risk Guardrails</p>
+      </div>
+      <div class="grid">
+        <article class="card" style="grid-column: span 6;">
+          <h3>Обязательные правила</h3>
+          <ul>
+            <li>Без гарантий суммы/исхода.</li>
+            <li>Без публикации кейсов без письменного consent.</li>
+            <li>С дисклеймером "информационный характер".</li>
+            <li>С четкой анонимизацией по выбору клиента.</li>
+          </ul>
+        </article>
+        <article class="card" style="grid-column: span 6;">
+          <h3>Что видит клиент как результат</h3>
+          <ul>
+            <li>Прозрачный и профессиональный тон бренда.</li>
+            <li>Меньше юридического шума, больше понятных шагов.</li>
+            <li>Стабильная скорость реакции на обращения.</li>
+            <li>Рост качественных входящих из доверительных каналов.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="first30" class="reveal">
+      <div class="section-head">
+        <h2>План внедрения на первые 30 дней</h2>
+        <p>Launch Sprint</p>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Неделя</th>
+            <th>Период</th>
+            <th>Ключевые действия</th>
+            <th>Результат недели</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Week 1</td>
+            <td>Feb 16 - Feb 22, 2026</td>
+            <td>GMB + CRM + intake + шаблоны + контент-план</td>
+            <td>Инфраструктура полностью готова</td>
+          </tr>
+          <tr>
+            <td>Week 2</td>
+            <td>Feb 23 - Mar 1, 2026</td>
+            <td>Съемка с Катей + актерские сценарии (форматы D/R/A/Q) + монтаж пакета</td>
+            <td>Готов content package на запуск</td>
+          </tr>
+          <tr>
+            <td>Week 3</td>
+            <td>Mar 2 - Mar 8, 2026</td>
+            <td>Публикация пилота, посев, Q&A, ответы в чатах/форумах</td>
+            <td>Первые DM и лиды с source tracking</td>
+          </tr>
+          <tr>
+            <td>Week 4</td>
+            <td>Mar 9 - Mar 15, 2026</td>
+            <td>Интервью с bridge #1 + Review: SLA, CPL, conversion, контент-сигналы</td>
+            <td>Go/No-Go решение на масштаб Month 2 и подключение bridge #2</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="alert a-info"><b>Kickoff deliverables:</b> список мостов #1/#2, доступы к каналам, ответственный за weekly report, фиксированный слот weekly review.</div>
+    </section>
+
+    <footer class="footer">
+      <p><b>Frederik Client Strategy Page</b> · версия для клиентского показа и alignment команды · обновлено: February 14, 2026</p>
+    </footer>
+  </div>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    }, { threshold: 0.18 });
+
+    document.querySelectorAll(".reveal").forEach((el, index) => {
+      el.style.transitionDelay = `${Math.min(index * 40, 220)}ms`;
+      observer.observe(el);
+    });
+
+    const links = Array.from(document.querySelectorAll("nav a"));
+    const sections = links.map((link) => document.querySelector(link.getAttribute("href"))).filter(Boolean);
+
+    const navObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const id = `#${entry.target.id}`;
+        links.forEach((link) => {
+          link.classList.toggle("active", link.getAttribute("href") === id);
+        });
+      });
+    }, { rootMargin: "-25% 0px -65% 0px", threshold: 0.1 });
+
+    sections.forEach((section) => navObserver.observe(section));
+  </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Client Presentations</title>
+  <style>
+    :root {
+      --bg:#f6f2ea;
+      --card:#fffdf8;
+      --line:#d4c8b4;
+      --ink:#1f2731;
+      --muted:#5c6775;
+      --brand:#1f6aa9;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Manrope,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--ink);padding:28px 16px}
+    .wrap{max-width:900px;margin:0 auto}
+    h1{font-size:34px;line-height:1.1;margin-bottom:8px}
+    p{color:var(--muted);margin-bottom:20px}
+    .grid{display:grid;gap:12px}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+    .card h2{font-size:18px;margin-bottom:6px}
+    .card p{margin:0 0 10px;font-size:14px}
+    a{color:var(--brand);font-weight:700;text-decoration:none}
+    a:hover{text-decoration:underline}
+    .tag{display:inline-block;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:#2c4c6e;background:#dfebf7;padding:4px 8px;border-radius:999px;margin-bottom:8px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Client Presentations</h1>
+    <p>Папка для клиентских презентаций. Базовая страница обновлена: February 14, 2026.</p>
+
+    <div class="grid">
+      <div class="card">
+        <span class="tag">Existing</span>
+        <h2>Miracle Marble — Stone Cutting Presentation</h2>
+        <p>Текущая презентация, которая уже лежала на сайте.</p>
+        <a href="../">Открыть презентацию</a>
+      </div>
+
+      <div class="card">
+        <span class="tag">New</span>
+        <h2>Frederik — Client Strategy Roadmap</h2>
+        <p>Полная клиентская страница: roadmap, форматы, система съёмки, community-entry, источники лидов.</p>
+        <a href="./frederik/">Открыть презентацию Frederik</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
